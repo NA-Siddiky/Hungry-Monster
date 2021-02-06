@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-weight: 300;
+  font-size: medium;
+  font-family: sans-serif;
+}
+.btn {
+  font-size: medium;
+}
+
+.meal-search-box {
+  max-width: 90%;
+  margin: 100px auto;
+}
+.search-meal {
+  width: 400px;
+  height: 50px;
+  font-size: 1.2em;
+  border: 1px solid #ef6c4e
+}
+.search-btn {
+  width: 100px;
+  height: 50px;
+  font-size: 1.2em;
+  background-color: #ef6c4e;
+}
