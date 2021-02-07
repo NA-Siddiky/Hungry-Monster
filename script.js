@@ -46,7 +46,6 @@ function ingredientsOfMeal() {
         //function for getting ingredients list //
         food.addEventListener('click', function () {
             const callAPI = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food.innerText}`;
-            const ingredient = document.getElementById('ingredient');
             fetch(callAPI)
                 .then(response => response.json())
                 .then(data => {
