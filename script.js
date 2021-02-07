@@ -1,9 +1,15 @@
 const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal');
 
-
 // event Handler /
 searchBtn.addEventListener('click', getMealList);
+
+mealList.addEventListener('click', function () {
+    const mealDetails = document.getElementById("meal-details")
+    mealDetails.className = "d-flex"
+});
+
+
 
 
 // functions of get meal //
@@ -39,3 +45,4 @@ function getMealList() {
 
         });
 }
+
