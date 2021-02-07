@@ -51,7 +51,11 @@ function loadMeal() {
                 .then(response => response.json())
                 .then(data => {
                     const listItem = document.createElement('li');
+                    document.getElementById("get-name").innerText = data.meals[0].strMeal;
+
                     listItem.innerText = data.meals[0].strIngredient1;
+                    listItem.innerText += data.meals[0].strIngredient2;
+                    listItem.innerText += data.meals[0].strIngredient3;
                     ingredient.appendChild(listItem);
 
                     document.getElementById('show-image').src = data.meals[0].strMealThumb;
