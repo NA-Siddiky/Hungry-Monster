@@ -4,12 +4,6 @@ const mealList = document.getElementById('meal');
 // event Handler /
 searchBtn.addEventListener('click', getMealList);
 
-mealList.addEventListener('click', function () {
-    const mealDetails = document.getElementById("meal-details")
-    mealDetails.className = "d-flex"
-});
-
-
 
 // functions of get meal //
 function getMealList() {
@@ -34,7 +28,9 @@ function getMealList() {
                         </div>
                     </div>
                     `;
-                })
+                });
+                // loadMeal();
+
                 mealList.classList.remove('noResult');
             } else {
                 html = "No Mill found as per your request. Sorry!!"
@@ -43,8 +39,34 @@ function getMealList() {
             mealList.innerHTML = html;
 
         });
+
 }
 
+function loadMeal() {
+    const mealDetails = document.querySelectorAll(".meal-item");
+
+    for (let i = 0; i < mealDetails.length; i++) {
+        const food = mealDetails[i];
+        food.addEventListener('click', function () {
+            console.log(food)
+        })
+    }
+}
+
+
+
+
+
+
+
+// mealList.addEventListener('click', function () {
+//     const mealDetails = document.getElementById("meal-details")
+//     mealDetails.className = "d-flex"
+//     const showImage = document.getElementById('show-image')
+
+//     // showImage.src = "${meal.strMealThumb}" 
+
+// });
 
 // const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata`
 
