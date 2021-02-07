@@ -40,6 +40,7 @@ function getMealList() {
             mealList.innerHTML = html;
         });
 }
+<<<<<<< HEAD
 
 
 
@@ -173,3 +174,5 @@ function getMealList() {
 // }
 
 
+=======
+>>>>>>> main
