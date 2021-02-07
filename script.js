@@ -4,45 +4,59 @@ const mealList = document.getElementById('meal');
 // event Handler /
 searchBtn.addEventListener('click', getMealList);
 
-mealList.addEventListener('click', function () {
-    const mealDetails = document.getElementById("meal-details")
-    mealDetails.className = "d-flex"
-});
-
-
-
 
 // functions of get meal //
 function getMealList() {
-    let searchInputText = document.getElementById('search-input').value.trim();
+    let searchInputText = document.getElementById('search-input').value;
     // console.log(searchInputText);
-    const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputText}`
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputText}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
-            let html = "";
             if (data.meals) {
+                mealList.innerHTML = '';
                 data.meals.forEach(meal => {
-                    html += `
-                    <div class="meal-item" data-id = "${meal.idMeal}">
-                        <div class="meal-img">
-                            <img src="${meal.strMealThumb}" alt="meal">
-                        </div>
-                        <div class="meal-name">
-                            <h3>${meal.strMeal}</h3>
-                        </div>
+                    const mealItem = document.createElement('div');
+                    mealItem.setAttribute('class', 'meal-item');
+                    mealItem.innerHTML = `
+                    <div class="meal-img">
+                        <img src="${meal.strMealThumb}" alt="meal">
                     </div>
-                    `;
-                })
+                    <div class="meal-name">
+                        <h3>${meal.strMeal}</h3>
+                    </div>
+                    `
+                    mealList.appendChild(mealItem);
+                });
+                loadMeal();
+
                 mealList.classList.remove('noResult');
             } else {
-                html = "No Mill found as per your request. Sorry!!"
+                mealList.innerHTML = "No Mill found as per your request. Sorry!!"
                 mealList.classList.add('noResult');
             }
-            mealList.innerHTML = html;
 
         });
 }
 
+function loadMeal() {
+    const mealDetails = document.querySelectorAll(".meal-item");
+    for (let i = 0; i < mealDetails.length; i++) {
+        const food = mealDetails[i];
+        food.addEventListener('click', function () {
+            const descAPI = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food.innerText}`;
+            const ingredient = document.getElementById('ingredient');
+            fetch(descAPI)
+                .then(response => response.json())
+                .then(data => {
+                    const listItem = document.createElement('li');
+                    listItem.innerText = data.meals[0].strIngredient1;
+                    ingredient.appendChild(listItem);
+
+                    document.getElementById('show-image').src = data.meals[0].strMealThumb;
+                })
+            document.getElementById('meal-details').classList.remove('d-none');
+        })
+    }
+}
