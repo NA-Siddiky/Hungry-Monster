@@ -20,7 +20,6 @@ body {
 .btn {
   font-size: medium;
 }
-
 .meal-search-box {
   max-width: 90%;
   margin: 100px auto;
@@ -56,20 +55,20 @@ body {
   padding: 1.5em 0.5em;
 }
 .noResult {
-  grid-template-columns: 1fr!important;
+  grid-template-columns: 2fr !important;
   color: red;
   font-size: 1.8em;
   font-weight: 600;
   width: 100%;
+  margin: 0 auto;
 }
 
-
-#meal-details{
+#meal-details {
   width: 50em;
+  height: auto;
   border: 1px solid black;
   border-radius: 5px;
   text-align: center;
-
 }
 
 @media screen and (min-width: 600px) {

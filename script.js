@@ -4,7 +4,6 @@ const mealList = document.getElementById('meal');
 // event Handler /
 searchBtn.addEventListener('click', getMealList);
 
-
 // functions of get meal //
 function getMealList() {
     let searchInputText = document.getElementById('search-input').value;
@@ -15,7 +14,7 @@ function getMealList() {
         .then(data => {
             if (data.meals) {
                 mealList.innerHTML = '';
-                data.meals.forEach(meal => {
+                data.meals.forEach(meal => {        // Traversing items using forEach Loop/
                     const mealItem = document.createElement('div');
                     mealItem.setAttribute('class', 'meal-item');
                     mealItem.innerHTML = `
@@ -29,34 +28,37 @@ function getMealList() {
                     mealList.appendChild(mealItem);
                 });
                 ingredientsOfMeal();
-
                 mealList.classList.remove('noResult');
-            } else {
-                mealList.innerHTML = "No Mill found as per your request. Sorry!!"
+            }
+            else {                                  // if item, not found /
+                mealList.innerHTML = "No Mill found as per your request. Sorry! Try again"
                 mealList.classList.add('noResult');
             }
-
         });
 }
 
+// functions of get Ingredients //
 function ingredientsOfMeal() {
     const mealIngredients = document.querySelectorAll(".meal-item");
     for (let i = 0; i < mealIngredients.length; i++) {
         const food = mealIngredients[i];
+        
+        //function for getting ingredients list //
         food.addEventListener('click', function () {
-            const APIurl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food.innerText}`;
+            const callAPI = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food.innerText}`;
             const ingredient = document.getElementById('ingredient');
-            fetch(APIurl)
+            fetch(callAPI)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById("get-name").innerText = data.meals[0].strMeal;
-
-                    const listItem = document.createElement('li');
-                    listItem.innerText = data.meals[0].strIngredient1;
-                    listItem.innerText += data.meals[0].strIngredient2;
-                    listItem.innerText += data.meals[0].strIngredient3;
-                    ingredient.appendChild(listItem);
-
+                    const ingredientList = document.getElementById("ingredient");
+                    const li = `
+                    <li>${data.meals[0].strIngredient1}</li>
+                    <li>${data.meals[0].strIngredient2}</li>
+                    <li>${data.meals[0].strIngredient3}</li>
+                    <li>${data.meals[0].strIngredient4}</li>
+                    `
+                    ingredientList.innerHTML = li
                     document.getElementById('show-image').src = data.meals[0].strMealThumb;
                 })
             document.getElementById('meal-details').classList.remove('d-none');
