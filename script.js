@@ -11,10 +11,7 @@ function getMealList() {
     let searchInputText = document.getElementById('search-input').value.trim();
     // console.log(searchInputText);
 
-    const url1 = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInputText}`
-    // const url2 = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputText}`
-
-    fetch(url1)
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputText}`)
         .then(response => response.json())
         .then(data => {
             // console.log(data);
@@ -38,5 +35,6 @@ function getMealList() {
                 mealList.classList.add('noResult');
             }
             mealList.innerHTML = html;
+
         });
 }
