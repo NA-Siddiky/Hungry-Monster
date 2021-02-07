@@ -65,8 +65,11 @@ body {
 
 
 #meal-details{
-  width: 500px;
+  width: 50em;
   border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+
 }
 
 @media screen and (min-width: 600px) {

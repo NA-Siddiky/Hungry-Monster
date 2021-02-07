@@ -8,7 +8,6 @@ searchBtn.addEventListener('click', getMealList);
 // functions of get meal //
 function getMealList() {
     let searchInputText = document.getElementById('search-input').value;
-    // console.log(searchInputText);
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputText}`;
 
     fetch(url)
@@ -29,7 +28,7 @@ function getMealList() {
                     `
                     mealList.appendChild(mealItem);
                 });
-                loadMeal();
+                ingredientsOfMeal();
 
                 mealList.classList.remove('noResult');
             } else {
@@ -40,19 +39,19 @@ function getMealList() {
         });
 }
 
-function loadMeal() {
-    const mealDetails = document.querySelectorAll(".meal-item");
-    for (let i = 0; i < mealDetails.length; i++) {
-        const food = mealDetails[i];
+function ingredientsOfMeal() {
+    const mealIngredients = document.querySelectorAll(".meal-item");
+    for (let i = 0; i < mealIngredients.length; i++) {
+        const food = mealIngredients[i];
         food.addEventListener('click', function () {
-            const descAPI = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food.innerText}`;
+            const APIurl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food.innerText}`;
             const ingredient = document.getElementById('ingredient');
-            fetch(descAPI)
+            fetch(APIurl)
                 .then(response => response.json())
                 .then(data => {
-                    const listItem = document.createElement('li');
                     document.getElementById("get-name").innerText = data.meals[0].strMeal;
 
+                    const listItem = document.createElement('li');
                     listItem.innerText = data.meals[0].strIngredient1;
                     listItem.innerText += data.meals[0].strIngredient2;
                     listItem.innerText += data.meals[0].strIngredient3;
