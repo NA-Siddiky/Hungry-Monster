@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,700&display=swap");
-
 * {
   padding: 0;
   margin: 0;
@@ -39,9 +38,6 @@ body {
 .meal-display {
   margin-top: 3em;
 }
-#meal {
-  margin: 5em;
-}
 .meal-item {
   border-radius: 1em;
   overflow: hidden;
@@ -62,7 +58,9 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-
+#meal {
+  margin: 5em;
+}
 #meal-details {
   width: 50em;
   height: auto;
@@ -78,7 +76,6 @@ body {
     margin-right: auto;
   }
 }
-
 @media screen and (min-width: 768px) {
   #meal {
     display: grid;
